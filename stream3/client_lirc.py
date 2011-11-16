@@ -5,7 +5,7 @@ from time import sleep
 from optparse import OptionParser
 
 from daemon import createDaemon
-from streamer import StreamerStatus
+from rocketeer. app import AppStatus
 
 def main():
     usage = "usage: pstream3_client_lirc [options]"
@@ -59,27 +59,27 @@ def main():
             status= None
             if(code["config"] == "start_stream"):
                 try:
-                    status=h264_client.GetStreamerRunStatus()
+                    status=h264_client.GetAppRunStatus()
                 except:
                     status=None
 
-                if (status!=StreamerStatus.RUNNING) or not status:
-                    print("Creating new streamer")
-                    h264= client.CreateStreamer("h264Stream")
-                    print h264, client.GetStreamerInstances()
+                if (status!=AppStatus.RUNNING) or not status:
+                    print("Creating new app")
+                    h264= client.CreateApp("h264Stream")
+                    print h264, client.GetAppInstances()
                     h264_client= xmlrpclib.ServerProxy("http://%s:%s/" % (ip,port) + str(h264))
-                    h264_client.SetStreamerValue("auto_restart", 1)
+                    h264_client.SetAppValue("auto_restart", 1)
                     if options.dump:
-                        h264_client.SetStreamerValue("dumpfolder", options.dump)
+                        h264_client.SetAppValue("dumpfolder", options.dump)
                     else:
-                        h264_client.SetStreamerValue("dumpfolder", "/home/recode/dump")
-                    h264_client.StartStreamer()
+                        h264_client.SetAppValue("dumpfolder", "/home/recode/dump")
+                    h264_client.StartApp()
                 else:
                     print("Stoping stream")
                     client.DestroyInstance(h264)
                     continue
 
-                while h264_client.GetStreamerRunStatus()!=StreamerStatus.RUNNING:
+                while h264_client.GetAppRunStatus()!=AppStatus.RUNNING:
                     sleep(.5)
                 print("Next code")
  

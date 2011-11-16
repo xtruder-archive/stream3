@@ -1,0 +1,8 @@
+include/*
+bin/*
+lib/*
+*.pyc
+build
+dist
+dump
+stream3.egg-info/*

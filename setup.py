@@ -11,13 +11,13 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "pstream3",
+    name = "stream3",
     version = "0.1",
     author = "Kiberpipa",
     author_email = "jakahudoklin@gmail.com",
-    description = ("Kiberpipa video stream solution establised on rocketeer proces launcher.."),
+    description = ("Kiberpipa video stream solution establised on rocketeer proces launcher."),
     license = "GNU",
-    keywords = "kiberpipa stream",
+    keywords = "kiberpipa stream ",
     url = "https://github.com/kiberpipa/pstream3",
     packages=find_packages(),
     long_description=read('README.md'),
@@ -26,6 +26,11 @@ setup(
         "Topic :: Utilities",
         "License :: OSI Approved :: GNU General Public License (GPL)",
     ],
-    install_requires = [ "rocketeer" ],
+    install_requires = [ "rocketeer", "pylirc2", "paramiko", "pyinotify" ],
+    entry_points="""
+    [console_scripts]
+    streamd = stream3.server_cli:main
+    stream_lirc = stream3.client_lirc:main
+    """,
     package_data={'pstream3': ['templates/*.tpl']},
 )
