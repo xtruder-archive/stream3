@@ -15,7 +15,7 @@ setup(
     version = "0.1",
     author = "Kiberpipa",
     author_email = "jakahudoklin@gmail.com",
-    description = ("Kiberpipa video stream solution establised on rocketeer proces launcher."),
+    description = ("Kiberpipa video stream solution establised on rocketeer process launcher."),
     license = "GNU",
     keywords = "kiberpipa stream ",
     url = "https://github.com/kiberpipa/pstream3",
@@ -29,8 +29,8 @@ setup(
     install_requires = [ "rocketeer", "pylirc2", "paramiko", "pyinotify" ],
     entry_points="""
     [console_scripts]
-    streamd = stream3.server_cli:main
-    stream_lirc = stream3.client_lirc:main
+    stream3d = stream3.server_cli:main
+    stream3-lirc = stream3.client_lirc:main
     """,
     package_data={'pstream3': ['templates/*.tpl']},
 )
