@@ -1,6 +1,6 @@
 from time import sleep
 
-from process import TemplateCommand, ConfigTemplateTemplateCommand
+from rocketeer.process import TemplateCommand, ConfigTemplateTemplateCommand
 from ffmpegprocess import FFMpegProcess
 from rocketeer.staticprocess import StaticProcess
 from notifycopyprocess import NotifyCopyProcess

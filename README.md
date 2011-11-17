@@ -15,6 +15,11 @@ Installation
 - Copy init scripts to /etc/init.d/
 - Copy config files to /etc/pstream/
 
+FAQ:
+----
+- Problems with paramiko:
+If you have any problems with paramiko library, on which stream is dependant on use pip install paramiko and it should work.
+
 Usage:
 ------
 There are two cli commands(add --help for more info):
