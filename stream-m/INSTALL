@@ -1,0 +1,4 @@
+1. mkdir /opt/stream-m
+2. cp stream-m.jar /opt/stream-m
+3. cp console.zip /opt/stream-m
+4. cp stream-m /usr/local/sbin

@@ -50,6 +50,7 @@ def main():
         lirc_path="/etc/pstream/conf"
     if(pylirc.init("pylirc", lirc_path, blocking)):
         code= {"config": ""}
+        notifyCopyProcess_client= None
         while(code["config"] != "quit"):
             #Read next code
             s= pylirc.nextcode(1)
@@ -66,6 +67,9 @@ def main():
                 if (status!=AppStatus.RUNNING) or not status:
                     print("Creating new app")
                     h264= client.CreateApp("h264Stream")
+                    if not notifyCopyProcess_client or notifyCopyProcess_client.GetAppRunStatus()!=AppStatus.RUNNING:
+                    	notifyCopyProcess= client.CreateApp("NotifyCopyProcess")
+                        notifyCopyProcess_client= xmlrpclib.ServerProxy("http://%s:%s/" % (ip,port) + str(notifyCopyProcess))
                     print h264, client.GetAppInstances()
                     h264_client= xmlrpclib.ServerProxy("http://%s:%s/" % (ip,port) + str(h264))
                     h264_client.SetAppValue("auto_restart", 1)
@@ -77,6 +81,7 @@ def main():
                 else:
                     print("Stoping stream")
                     client.DestroyInstance(h264)
+                    client.DestroyInstance(notifyCopyProcess)
                     continue
 
                 while h264_client.GetAppRunStatus()!=AppStatus.RUNNING:

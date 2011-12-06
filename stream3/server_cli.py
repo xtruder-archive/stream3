@@ -36,7 +36,7 @@ def main():
     while(1):
         try:
             srv.GetRequestHandler().UpdateStatus()
-            sleep(.01)
+            sleep(.1)
         except KeyboardInterrupt:
             srv.__del__()
             break

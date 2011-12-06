@@ -5,13 +5,13 @@ import time
 
 from pyinotify import WatchManager, Notifier, ThreadedNotifier, EventsCodes, ProcessEvent
 
-from rocketeer.app import App, AppStatus
+from rocketeer.app import AppStatusUpdate, AppStatus
 from rocketeer.process import StatusUpdateNode
 
-class NotifyCopyProcess(StatusUpdateNode, App, ProcessEvent):
+class NotifyCopyProcess(StatusUpdateNode, AppStatusUpdate, ProcessEvent):
     def __init__(self):
         StatusUpdateNode.__init__(self)
-        App.__init__(self)
+        AppStatusUpdate.__init__(self)
 
 	mask = EventsCodes.ALL_FLAGS["IN_CREATE"]  # watched events
 
@@ -57,15 +57,15 @@ class NotifyCopyProcess(StatusUpdateNode, App, ProcessEvent):
 
     def UpdateStatus(self):
         if not StatusUpdateNode.UpdateStatus(self):
-            return None
-	
+            return False
+
         self._SetAppRunStatus(AppStatus.RUNNING)
 
 	self.notifier.process_events()
 	if self.notifier.check_events(timeout=.1):
             self.notifier.read_events()
 
-        return ""
+        return True
 
     def process_IN_CREATE(self, event):
 	print "Event", os.path.join(event.path, event.name)

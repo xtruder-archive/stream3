@@ -16,24 +16,24 @@ from templates.stream_motion_conf import motionConfTpl
 
 class h264Stream(FFMpegProcess):
     def __init__(self):
-        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(h264Tpl, "templates/stream_h264.tpl"))
+        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(h264Tpl, "stream_h264.tpl"))
 
 class webmStream(FFMpegProcess):
     def __init__(self):
-        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(webmTpl, "templates/stream_webm.tpl"))
+        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(webmTpl, "stream_webm.tpl"))
 
 class prosojniceStream(FFMpegProcess):
     def __init__(self):
-        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(prosojniceTpl, "templates/stream_prosojnice.tpl"))
+        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(prosojniceTpl, "stream_prosojnice.tpl"))
 
 class testStream(FFMpegProcess):
     def __init__(self):
-        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(testTpl, "templates/stream_test.tpl"))
+        FFMpegProcess.__init__(self,bootstrap=TemplateCommand(testTpl, "stream_test.tpl"))
 
 class motionDetect(StaticProcess):
     def __init__(self):
         StaticProcess.__init__(self,bootstrap=ConfigTemplateTemplateCommand(motionTpl, motionConfTpl, \
-                                "templates/stream_motion.tpl", "templates/stream_motion_conf.tpl"))
+                                "stream_motion.tpl", "stream_motion_conf.tpl"))
 
 def CreateServer(ip="127.0.0.1", port=8400):
     srv= Server(AppsHandler, ip, port)

@@ -32,5 +32,5 @@ setup(
     stream3d = stream3.server_cli:main
     stream3-lirc = stream3.client_lirc:main
     """,
-    package_data={'pstream3': ['templates/*.tpl']},
+    package_data={'stream3': ['templates/*.tpl']},
 )
