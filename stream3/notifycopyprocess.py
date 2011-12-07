@@ -10,7 +10,7 @@ from rocketeer.process import StatusUpdateNode
 
 class NotifyCopyProcess(StatusUpdateNode, AppStatusUpdate, ProcessEvent):
     def __init__(self):
-        StatusUpdateNode.__init__(self)
+        #StatusUpdateNode.__init__(self)
         AppStatusUpdate.__init__(self)
 
 	mask = EventsCodes.ALL_FLAGS["IN_CREATE"]  # watched events
